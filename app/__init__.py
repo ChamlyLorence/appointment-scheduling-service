@@ -4,7 +4,7 @@ from app.routes import routes
 
 def create_app():
     app = Flask(__name__)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://postgres:postgres@ec2-54-81-109-229.compute-1.amazonaws.com:5432/meditrack"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://postgres:postgres@ec2-54-208-97-188.compute-1.amazonaws.com:5432/meditrack"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.secret_key = "your_secret_key"
 
