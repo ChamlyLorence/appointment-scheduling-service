@@ -45,5 +45,5 @@ phases:
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       - echo Push the latest image to cluster
       - kubectl apply -f eks_cicd/appointment-scheduling-deployment.yaml
-      - kubectl rollout restart -f eks_cicd/ppointment-scheduling-deployment.yaml
+      - kubectl rollout restart -f eks_cicd/appointment-scheduling-deployment.yaml
       
