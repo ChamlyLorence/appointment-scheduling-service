@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appointment-scheduling-deployment
+  labels:
+    app: appointment-scheduling
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: appointment-scheduling
+  template:
+    metadata:
+      labels:
+        app: appointment-scheduling
+    spec:
+      containers:
+      - name: appointment-scheduling
+        image: 698443748044.dkr.ecr.us-east-1.amazonaws.com/appointment-scheduling:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        env:
+        - name: DB_HOST
+          value: "ec2-54-208-97-188.compute-1.amazonaws.com"
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_NAME
+          value: "meditrack"
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-credentials
+              key: DB_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-credentials
+              key: DB_PASSWORD
